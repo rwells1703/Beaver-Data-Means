@@ -1,16 +1,16 @@
-frequencies = [1,4,3,1,1,1]
+import csv
 
 def calculate_upper_mean(frequencies, fraction):
-    midpoint = sum(frequencies) * fraction
+    split_point = sum(frequencies) * fraction
 
-    total_remaining = midpoint
+    total_remaining = split_point
 
     weightings = [0] * len(frequencies)
 
     i = len(frequencies)-1
     stop = False
-    while i > 0 and not stop:
-        if total_remaining - frequencies[i] > 0:
+    while i >= 0 and not stop:
+        if total_remaining - frequencies[i] >= 0:
             total_remaining -= frequencies[i]
             weightings[i] = 1
         else:
@@ -24,11 +24,17 @@ def calculate_upper_mean(frequencies, fraction):
 
     i = 0
     while i < len(frequencies):
-        upper_mean += i * weightings[i]
+        upper_mean += i * frequencies[i] * weightings[i]
         i += 1
 
-    upper_mean /= midpoint
+    upper_mean /= split_point
 
     return upper_mean
 
-print(calculate_upper_mean(frequencies, 0.5))
+
+def example():
+    frequencies = [1,4,3,1,1,1]
+    
+    print(calculate_upper_mean(frequencies, 0.5))
+
+example()
