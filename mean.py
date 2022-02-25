@@ -1,7 +1,7 @@
 frequencies = [1,4,3,1,1,1]
 
-def calculate_upper_mean(frequencies):
-    midpoint = sum(frequencies) / 2
+def calculate_upper_mean(frequencies, fraction):
+    midpoint = sum(frequencies) * fraction
 
     total_remaining = midpoint
 
@@ -31,4 +31,4 @@ def calculate_upper_mean(frequencies):
 
     return upper_mean
 
-print(calculate_upper_mean(frequencies))
+print(calculate_upper_mean(frequencies, 0.5))
