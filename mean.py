@@ -37,4 +37,18 @@ def example():
     
     print(calculate_upper_mean(frequencies, 0.5))
 
-example()
+def read_csv():
+    with open('beavers.csv', newline='') as file:
+        reader = csv.reader(file, delimiter=',')
+
+        for row in reader:
+            # Remove the first element from each row as it is the segment number
+            row.pop(0)
+
+            # Convert each string to a number value
+            row = list(map(float, row))
+
+            # Print the upper mean result
+            print(calculate_upper_mean(row, 0.5))
+
+read_csv()
